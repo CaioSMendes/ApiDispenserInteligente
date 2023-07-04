@@ -1,0 +1,2 @@
+class RfidCard < ApplicationRecord
+end
