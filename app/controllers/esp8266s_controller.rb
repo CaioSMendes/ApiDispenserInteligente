@@ -18,7 +18,7 @@ class Esp8266sController < ApplicationController
         render json: { success: false, message: 'Offline' }
       end
       # Cria um novo registro de log
-      #Log.create(device_id: esp8266.device_id, status: esp8266.status, timestamp: Time.current)
+      Esp8266.create(device: esp8266.device, status: esp8266.status)
     end
   end
 
