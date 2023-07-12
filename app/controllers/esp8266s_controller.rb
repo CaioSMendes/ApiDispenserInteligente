@@ -12,11 +12,13 @@ class Esp8266sController < ApplicationController
       esp8266 = Esp8266.find_or_initialize_by(device: params[:device])
       esp8266.status = params[:status]
       esp8266.save
-  
+      if params[:status] == "online"
+        render json: { success: true, message: 'Online' }
+      else
+        render json: { success: false, message: 'Offline' }
+      end
       # Cria um novo registro de log
       #Log.create(device_id: esp8266.device_id, status: esp8266.status, timestamp: Time.current)
-  
-      render json: { success: true, message: 'Status atualizado com sucesso.' }
     end
   end
 
