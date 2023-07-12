@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_185028) do
   enable_extension "plpgsql"
 
   create_table "esp8266s", force: :cascade do |t|
-    t.string "name"
-    t.boolean "online"
+    t.string "device"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

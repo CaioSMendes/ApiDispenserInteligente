@@ -7,6 +7,19 @@ class Esp8266sController < ApplicationController
     render json: @esp8266s
   end
 
+  def update_status
+    def update_status
+      esp8266 = Esp8266.find_or_initialize_by(device: params[:device])
+      esp8266.status = params[:status]
+      esp8266.save
+  
+      # Cria um novo registro de log
+      #Log.create(device_id: esp8266.device_id, status: esp8266.status, timestamp: Time.current)
+  
+      render json: { success: true, message: 'Status atualizado com sucesso.' }
+    end
+  end
+
   # POST /esp8266s
   def create
     @esp8266 = Esp8266.new(esp8266_params)
@@ -32,6 +45,6 @@ class Esp8266sController < ApplicationController
   end
 
   def esp8266_params
-    params.require(:esp8266).permit(:name)
+    params.require(:esp8266).permit(:device, :status)
   end
 end
