@@ -17,6 +17,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_185028) do
   create_table "esp8266s", force: :cascade do |t|
     t.string "device"
     t.string "status"
+    t.string "ipadrrs"
+    t.integer "cont"
+    t.datetime "last_seen"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,3 @@
+check_offline_devices_job:
+  cron: "*/1 * * * * *"
+  class: "CheckOfflineDevicesJob"

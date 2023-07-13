@@ -7,19 +7,29 @@ class Esp8266sController < ApplicationController
     render json: @esp8266s
   end
 
-  def update_status
-    def update_status
+  def update_status 
       esp8266 = Esp8266.find_or_initialize_by(device: params[:device])
       esp8266.status = params[:status]
+      esp8266.ipadrrs = params[:ipadrrs]
+      esp8266.cont = params[:cont]
+      esp8266.last_seen = params[:last_seen]
+      #esp8266.last_seen = Time.current
       esp8266.save
-      if params[:status] == "online"
-        render json: { success: true, message: 'Online' }
+
+      if esp8266.nil?
+        # Dispositivo não encontrado
+        render json: { error: 'Dispositivo não encontrado' }
       else
-        render json: { success: false, message: 'Offline' }
+        #if esp8266.last_seen.present? && esp8266.last_seen > 5.minutes.ago
+        #if esp8266.online?
+        if params[:status] == "online"
+          render json: { success: true, message: 'Online' }
+        else
+          render json: { success: false, message: 'Offline' }
+        end
       end
       # Cria um novo registro de log
-      Esp8266.create(device: esp8266.device, status: esp8266.status)
-    end
+      Esp8266.create(device: esp8266.device, status: esp8266.status, ipadrrs: esp8266.ipadrrs, cont: esp8266.cont, last_seen: esp8266.last_seen)
   end
 
   # POST /esp8266s
@@ -47,6 +57,6 @@ class Esp8266sController < ApplicationController
   end
 
   def esp8266_params
-    params.require(:esp8266).permit(:device, :status)
+    params.require(:esp8266).permit(:device, :status, :ipadrrs, :cont, :last_seen)
   end
 end
