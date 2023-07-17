@@ -5,7 +5,8 @@ class CreateEsp8266s < ActiveRecord::Migration[7.0]
       t.string :status
       t.string :ipadrrs
       t.integer :cont
-      t.datetime :last_seen
+      t.string :last_seen
+      t.string :padlock
 
       t.timestamps
     end
