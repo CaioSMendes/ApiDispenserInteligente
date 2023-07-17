@@ -13,6 +13,7 @@ class Esp8266sController < ApplicationController
       esp8266.ipadrrs = params[:ipadrrs]
       esp8266.cont = params[:cont]
       esp8266.last_seen = params[:last_seen]
+      esp8266.padlock = params[:padlock]
       #esp8266.last_seen = Time.current
       esp8266.save
 
@@ -29,7 +30,7 @@ class Esp8266sController < ApplicationController
         end
       end
       # Cria um novo registro de log
-      Esp8266.create(device: esp8266.device, status: esp8266.status, ipadrrs: esp8266.ipadrrs, cont: esp8266.cont, last_seen: esp8266.last_seen)
+      Esp8266.create(device: esp8266.device, status: esp8266.status, ipadrrs: esp8266.ipadrrs, cont: esp8266.cont, last_seen: esp8266.last_seen, padlock: esp8266.padlock)
   end
 
   # POST /esp8266s

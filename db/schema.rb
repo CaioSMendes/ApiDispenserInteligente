@@ -19,7 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_185028) do
     t.string "status"
     t.string "ipadrrs"
     t.integer "cont"
-    t.datetime "last_seen"
+    t.string "last_seen"
+    t.string "padlock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
