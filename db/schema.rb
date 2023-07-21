@@ -21,6 +21,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_185028) do
     t.integer "cont"
     t.string "last_seen"
     t.string "padlock"
+    t.string "owner"
+    t.string "phone"
+    t.integer "fullmax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

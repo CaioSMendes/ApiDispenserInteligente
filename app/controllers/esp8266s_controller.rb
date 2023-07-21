@@ -14,7 +14,9 @@ class Esp8266sController < ApplicationController
       esp8266.cont = params[:cont]
       esp8266.last_seen = params[:last_seen]
       esp8266.padlock = params[:padlock]
-      #esp8266.last_seen = Time.current
+      esp8266.owner = params[:owner]
+      esp8266.phone = params[:phone]
+      esp8266.fullmax = params[:fullmax]
       esp8266.save
 
       if esp8266.nil?
@@ -30,7 +32,7 @@ class Esp8266sController < ApplicationController
         end
       end
       # Cria um novo registro de log
-      Esp8266.create(device: esp8266.device, status: esp8266.status, ipadrrs: esp8266.ipadrrs, cont: esp8266.cont, last_seen: esp8266.last_seen, padlock: esp8266.padlock)
+      Esp8266.create(device: esp8266.device, status: esp8266.status, ipadrrs: esp8266.ipadrrs, cont: esp8266.cont, last_seen: esp8266.last_seen, padlock: esp8266.padlock,owner: esp8266.owner, phone: esp8266.phone, fullmax: esp8266.fullmax)
   end
 
   # POST /esp8266s
@@ -58,6 +60,6 @@ class Esp8266sController < ApplicationController
   end
 
   def esp8266_params
-    params.require(:esp8266).permit(:device, :status, :ipadrrs, :cont, :last_seen)
+    params.require(:esp8266).permit(:device, :status, :ipadrrs, :cont, :last_seen, :padlock, :owner, :phone, :fullmax)
   end
 end
