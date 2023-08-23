@@ -17,6 +17,7 @@ class Esp8266sController < ApplicationController
       esp8266.owner = params[:owner]
       esp8266.phone = params[:phone]
       esp8266.fullmax = params[:fullmax]
+      esp8266.litro = params[:litro]
       esp8266.save
 
       if esp8266.nil?
@@ -60,6 +61,6 @@ class Esp8266sController < ApplicationController
   end
 
   def esp8266_params
-    params.require(:esp8266).permit(:device, :status, :ipadrrs, :cont, :last_seen, :padlock, :owner, :phone, :fullmax)
+    params.require(:esp8266).permit(:device, :status, :ipadrrs, :cont, :last_seen, :padlock, :owner, :phone, :fullmax, :litro)
   end
 end

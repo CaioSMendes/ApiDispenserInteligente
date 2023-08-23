@@ -10,7 +10,7 @@ class CreateEsp8266s < ActiveRecord::Migration[7.0]
       t.string :owner
       t.string :phone
       t.integer :fullmax
-
+      t.integer :litro
 
       t.timestamps
     end
