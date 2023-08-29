@@ -36,6 +36,16 @@ class Esp8266sController < ApplicationController
       Esp8266.create(device: esp8266.device, status: esp8266.status, ipadrrs: esp8266.ipadrrs, cont: esp8266.cont, last_seen: esp8266.last_seen, padlock: esp8266.padlock,owner: esp8266.owner, phone: esp8266.phone, fullmax: esp8266.fullmax)
   end
 
+  def update
+    esp8266 = Esp8266.find(params[:id]) # Supondo que você esteja usando o ID para identificar o registro
+    if esp8266.update(esp8266_params)
+      render json: { success: true, message: 'Atualizado com sucesso' }
+      #render json: esp8266, status: :ok
+    else
+      render json: { errors: esp8266.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   # POST /esp8266s
   def create
     @esp8266 = Esp8266.new(esp8266_params)
