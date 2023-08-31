@@ -46,6 +46,6 @@ group :development do
   # gem "spring"
 end
 
-
+gem 'rack-cors'
 gem "sidekiq", "~> 7.1"
 gem 'sidekiq-scheduler'
